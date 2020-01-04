@@ -1,0 +1,23 @@
+{
+  "name": "interview-prep",
+  "version": "1.0.0",
+  "main": "public/index.html",
+  "dependencies": {
+    "http-server": "^0.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "http-server ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikaspulluri/interview-prep.git"
+  },
+  "author": "Vikas Pulluri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikaspulluri/interview-prep/issues"
+  },
+  "homepage": "https://github.com/vikaspulluri/interview-prep#readme",
+  "description": ""
+}
