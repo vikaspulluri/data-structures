@@ -43,6 +43,16 @@ DLL.prototype.delete = function(x) {
   }
 }
 
+DLL.prototype.print = function() {
+  let cur = this.head, output = '';
+  while (cur) {
+    output += cur.data + '<=>'
+    cur = cur.next;
+  }
+  output += 'null';
+  console.log(output);
+}
+
 // let d = new DLL();
 // d.append(1)
 // d.append(3)
