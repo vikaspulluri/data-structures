@@ -1,4 +1,4 @@
-class Stack {
+export default class Stack {
 	constructor() {
 		this.items = [];
 	}
@@ -8,12 +8,16 @@ class Stack {
 	}
 
 	pop() {
-		if (this.items.length === 0) { return 'Underflow'; }
+		if (this.items.length === 0) { return null; }
 		return this.items.pop();
 	}
 
 	peek() {
 		return this.items[this.items.length - 1];
+	}
+
+	top() {
+		return this.peek();
 	}
 
 	isEmpty() {
