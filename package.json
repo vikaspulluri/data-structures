@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "public/index.html",
   "dependencies": {
+    "jest": "^25.4.0",
     "parcel": "^1.12.4"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
