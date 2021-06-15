@@ -39,3 +39,11 @@ export function bgYellow(msg) {
 export function bgRed(msg) {
   console.log(chalk.bgRed(msg));
 }
+
+export function bgCyan(msg) {
+  console.log(chalk.bgCyanBright(msg));
+}
+
+export function bgMagenta(msg) {
+  console.log(chalk.bgMagentaBright(msg));
+}

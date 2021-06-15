@@ -141,3 +141,86 @@ function search(key, arr) {
   }
   return -1;
 }
+
+export function max_min(arr: any[]) {
+  let min = arr[0], max = arr[0];
+  for(let i = 1; i < arr.length; i++) {
+    if (min > arr[i]) min = arr[i];
+    if (max < arr[i]) max = arr[i];
+  }
+  return [min, max];
+}
+
+export function findMissingElements(arr: number[]) {
+  if (!isSorted(arr)) {
+    bgRed('Array should be sorted!');
+    return;
+  }
+  let missing = [];
+  let l = arr[0], r = arr[arr.length - 1], diff = l;
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i] - i !== diff) {
+      while(diff < arr[i] - i) {
+        missing.push(diff + i);
+        diff++;
+      }
+    }
+  }
+  return missing;
+}
+
+export function findMissingElementsSpace(arr: number[]) {
+  if (!isSorted(arr)) {
+    bgRed('Array should be sorted!');
+    return;
+  }
+  const missing = [];
+  const l = arr[0], r = arr[arr.length - 1];
+  const h = new Array(r).fill(0);
+  for (let i = 0; i < arr.length; i++) {
+    h[arr[i]]++;
+  }
+  for (let i = l; i < r; i++) {
+    if (h[i] === 0) missing.push(i);
+  }
+  return missing;
+}
+
+export function duplicate(arr: any[]) {
+  const hash = {};
+  for(let i = 0; i < arr.length; i++) {
+    hash[arr[i]] = hash[arr[i]] ? ++hash[arr[i]] : 1;
+  }
+  return Object.keys(hash).filter(key => hash[key] > 1);
+}
+
+export function sumOfPair(sum: number, arr: any[]) {
+  const hash = {};
+  const pairs = [];
+  for(let i = 0; i < arr.length; i++) {
+    if (hash[arr[i]]) { 
+      pairs.push(`(${arr[i]}, ${hash[arr[i]]}) `); 
+    } else {
+      hash[sum - arr[i]] = arr[i];
+    }
+  }
+  return pairs;
+}
+
+export function sumOfPairSorted(sum: number, arr: any[]) {
+  let i = 0, j = arr.length - 1;
+  const pairs = [];
+  while (i < j) {
+    if (arr[i] + arr[j] === sum) {
+      pairs.push(`(${arr[i]}, ${arr[j]}) `);
+      i++;
+      j--;
+    } else if (arr[i] + arr[j] < sum) {
+      i++;
+    } else {
+      j--;
+    }
+  }
+  return pairs;
+}
+
