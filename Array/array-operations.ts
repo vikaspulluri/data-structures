@@ -3,7 +3,7 @@ import { bgRed } from '../log';
 
 export function isSorted(arr) {
   for (let i = 0; i < arr.length - 2; i++) {
-    if (! (arr[i] < arr[i+1])) return false;
+    if (! (arr[i] <= arr[i+1])) return false;
   }
   return true;
 }
@@ -224,3 +224,19 @@ export function sumOfPairSorted(sum: number, arr: any[]) {
   return pairs;
 }
 
+export function deleteDuplicatesSortedInPlace(arr: any[]) {
+  if (!isSorted(arr)) {
+    bgRed('Array must be sorted!');
+    return;
+  }
+  let k = 0;
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i] !== arr[i+1]) {
+      arr[k++] = arr[i];
+    }
+  }
+  for (let i = k; i < arr.length; i++) {
+    arr[k++] = undefined;
+  }
+  return arr;
+}

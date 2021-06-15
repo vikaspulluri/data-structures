@@ -1,4 +1,4 @@
-import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicate, sumOfPair, sumOfPairSorted } from "./array-operations";
+import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicate, sumOfPair, sumOfPairSorted, deleteDuplicatesSortedInPlace } from "./array-operations";
 import { bgBlue, yellow, green, cyan, magenta, bgYellow, bgGreen, blue, bgMagenta, bgCyan, bgRed } from "../log";
 
 export class ArrayOperations {
@@ -7,6 +7,7 @@ export class ArrayOperations {
   private c = [7,5,15,19,4];
   private d = [1,2,4,5,6,9,10];
   private e = [5,2,1,4,6,4,7,5,4,2];
+  private f = [0,0,1,1,1,2,2,3,3,4];
   constructor() {}
 
   initAll() {
@@ -35,6 +36,9 @@ export class ArrayOperations {
     bgRed('Sum of Pair:');
     yellow(sumOfPair(13, this.b));
     blue(sumOfPairSorted(13, this.b));
+
+    bgBlue('Remove Duplicates:');
+    cyan(deleteDuplicatesSortedInPlace(this.f));
   }
 }
 
