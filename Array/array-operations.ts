@@ -1,4 +1,5 @@
 import * as chalk from 'chalk';
+import { bgRed } from '../log';
 
 export function isSorted(arr) {
   for (let i = 0; i < arr.length - 2; i++) {
@@ -9,9 +10,7 @@ export function isSorted(arr) {
 
 export function merge(arr1: any[], arr2: any[]) {
   if (!isSorted(arr1) || !isSorted(arr2)) {
-    console.log(
-      chalk.bgRed('Array must be sorted for merging!')
-    );
+    bgRed('Array must be sorted for merging!');
     return;
   }
   let output = new Array(arr1.length + arr2.length);

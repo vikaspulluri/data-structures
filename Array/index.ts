@@ -1,5 +1,5 @@
 import { difference, intersection, merge, union } from "./array-operations";
-import * as chalk from 'chalk';
+import { bgBlue, yellow, green, cyan, magenta } from "../log";
 
 export class ArrayOperations {
   private a = [1,3,6,8,11];
@@ -8,17 +8,17 @@ export class ArrayOperations {
   constructor() {}
 
   initAll() {
-    console.log(chalk.bgBlue('Merging:'));
-    console.log(chalk.magenta(merge(this.a,this.b)));
+    bgBlue('Merging:');
+    yellow(merge(this.a,this.b));
 
-    console.log(chalk.bgBlue('Union:'));
-    console.log(chalk.green(union(this.a,this.b)));
+    bgBlue('Union:');
+    green(union(this.a,this.b));
 
-    console.log(chalk.bgBlue('Intersection:'));
-    console.log(chalk.yellow(intersection(this.b,this.c)));
+    bgBlue('Intersection:');
+    magenta(intersection(this.b,this.c));
 
-    console.log(chalk.bgBlue('Difference:'));
-    console.log(chalk.cyan(difference(this.b, this.c)));
+    bgBlue('Difference:');
+    cyan(difference(this.b, this.c));
   }
 }
 

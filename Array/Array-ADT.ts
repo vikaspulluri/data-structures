@@ -1,6 +1,4 @@
-import * as chalk from 'chalk';
-import { timeStamp } from 'console';
-import { OutputFileType } from 'typescript';
+import { bgRed } from '../log';
 
 export class ArrayADT {
   private size: number;
@@ -24,7 +22,7 @@ export class ArrayADT {
 
   insert(index: number, value) {
     if (index > this.length || index >= this.size) {
-      console.log(chalk.bgRed(`Invalid index! ${index}`)); 
+      bgRed(`Invalid index! ${index}`);
       return;
     }
     for (let i = this.length; i > index; i--) {
@@ -36,7 +34,8 @@ export class ArrayADT {
 
   delete(index: number) {
     if (index >= this.size || this.array[index] === undefined) {
-      console.log(chalk.bgRed(`Invalid index! ${index}`));
+      bgRed(`Invalid index! ${index}`);
+      return;
     }
     for (let i = index; i < this.length; i++) {
       this.array[i] = this.array[i+1];

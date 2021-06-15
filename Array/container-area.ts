@@ -1,3 +1,5 @@
+import { green } from "../log";
+
 /**
  * Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai).
  * n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). 
@@ -10,7 +12,7 @@ export const maxArea = function(height) {
   while(left < right) {
       let area = Math.min(height[left], height[right]) * (right - left);
       if (area > result) result = area;
-      console.log('area, result, left, right: ', area, result, height[left], height[right]);
+      green(`area, result, left, right: , ${area}, ${result}, ${height[left]}, ${height[right]}`);
       if (height[left] <= height[right]) { 
         left++;
       } else {
