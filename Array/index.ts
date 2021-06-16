@@ -1,5 +1,6 @@
-import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicate, sumOfPair, sumOfPairSorted, deleteDuplicatesSortedInPlace } from "./array-operations";
+import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicates, sumOfPair, sumOfPairSorted, deleteDuplicatesSortedInPlace, duplicatesInPlace } from "./array-operations";
 import { bgBlue, yellow, green, cyan, magenta, bgYellow, bgGreen, blue, bgMagenta, bgCyan, bgRed } from "../log";
+import { threeSum } from "./challenges";
 
 export class ArrayOperations {
   private a = [1,3,6,8,11];
@@ -31,7 +32,8 @@ export class ArrayOperations {
     cyan(findMissingElementsSpace(this.d));
 
     bgMagenta('Duplicate Elements:');
-    green(duplicate(this.e));
+    green(duplicates(this.e));
+    blue(duplicatesInPlace(this.e));
 
     bgRed('Sum of Pair:');
     yellow(sumOfPair(13, this.b));
@@ -42,6 +44,17 @@ export class ArrayOperations {
   }
 }
 
-const op = new ArrayOperations();
-op.initAll();
+export class Challenges {
+  threeSum() {
+    bgBlue('ThreeSum:');
+    let a = [-1,1,0,-1,2,-4];
+    let b = [-2,0,1,1,2];
+    cyan(threeSum(b));
+  }
+}
 
+const a = new ArrayOperations();
+a.initAll();
+
+const c = new Challenges();
+// c.threeSum();

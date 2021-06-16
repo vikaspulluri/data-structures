@@ -1,5 +1,5 @@
 import * as chalk from 'chalk';
-import { bgRed } from '../log';
+import { bgRed, green } from '../log';
 
 export function isSorted(arr) {
   for (let i = 0; i < arr.length - 2; i++) {
@@ -186,12 +186,25 @@ export function findMissingElementsSpace(arr: number[]) {
   return missing;
 }
 
-export function duplicate(arr: any[]) {
+export function duplicates(arr: any[]) {
   const hash = {};
   for(let i = 0; i < arr.length; i++) {
     hash[arr[i]] = hash[arr[i]] ? ++hash[arr[i]] : 1;
   }
   return Object.keys(hash).filter(key => hash[key] > 1);
+}
+
+export function duplicatesInPlace(nums: number[]) {
+  const dups = [];
+  for (let i=0;i<nums.length;i++) {
+      const index = Math.abs(nums[i]) - 1;
+      if (nums[index] > 0) {
+          nums[index] = nums[index] * -1;
+      } else {
+          dups.push(index + 1);
+      }
+  }
+  return dups;
 }
 
 export function sumOfPair(sum: number, arr: any[]) {
@@ -240,3 +253,16 @@ export function deleteDuplicatesSortedInPlace(arr: any[]) {
   }
   return arr;
 }
+
+export function removeElementInPlace(nums: number[], val: number) {
+  let k = 0;
+  for (let i=0;i<nums.length;i++) {
+      if (nums[i] !== val) {
+          nums[k++] = nums[i];
+      }
+  }
+  for(let i=k;i<nums.length;i++) {
+      nums[i] = undefined;
+  }
+  return k;
+};
