@@ -4,6 +4,8 @@
   "main": "index.js",
   "dependencies": {
     "chalk": "^4.1.1",
+    "cli-progress": "^3.9.0",
+    "cli-table": "^0.3.6",
     "jest": "^25.4.0",
     "parcel": "^1.12.4",
     "typescript": "^4.3.2"
@@ -13,7 +15,8 @@
   },
   "scripts": {
     "array": "tsc && node dist/Array/index.js",
-    "test": ""
+    "test": "tsc && node dist/index.js",
+    "sort": "tsc && node dist/Sorting/index.js"
   },
   "repository": {
     "type": "git",

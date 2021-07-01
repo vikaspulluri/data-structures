@@ -27,3 +27,24 @@ export function threeSum(nums) {
   }
   return result;
 };
+
+// Remove duplicates that occurs more than twice
+export function removeDuplicates(nums: number[]) {
+  let occurance = true, k = 0;
+  for(let i=1;i<nums.length;i++) {
+    if (nums[k] === nums[i]) {
+      if (occurance) {
+        nums[++k] = nums[i];
+        occurance = false;
+      }
+    } else {
+      nums[++k] = nums[i];
+      occurance = true;
+    }
+  }
+  for(let i=k+1;i<nums.length;i++) {
+    nums[i] = undefined;
+  }
+  return nums;
+}
+
