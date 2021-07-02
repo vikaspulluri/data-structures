@@ -1,6 +1,7 @@
 import { blue, green, magenta, yellow } from "../log";
 import { bubble_sort } from "./bubble.sort";
 import { insertion_sort } from "./insertion.sort";
+import { quick_sort } from "./quick.sort";
 import { selection_sort } from "./selection.sort";
 import { Stats } from "./stats";
 import { bubbleSort, insertionSort, randomArray, selectionSort } from "./util";
@@ -43,6 +44,15 @@ class SortSimulator {
     blue(`Array: ${selection.result}`);
   }
 
+  quickSort() {
+    console.time(selectionSort);
+    const quick = quick_sort([...array.slice(), Infinity]);
+    console.timeEnd(selectionSort);
+    magenta(`Comparisons: ${quick.comparisons}`);
+    yellow(`Swaps: ${quick.swaps}`);
+    blue(`Array: ${quick.result}`);
+  }
+
   printStats() {
     const stats = new Stats();
     stats.getAllSortStats();
@@ -52,3 +62,4 @@ class SortSimulator {
 
 const sim = new SortSimulator();
 sim.printStats();
+// sim.quickSort();

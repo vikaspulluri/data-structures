@@ -3,6 +3,8 @@ const cliProgress = require('cli-progress');
 export const bubbleSort = 'Bubble Sort';
 export const insertionSort = 'Insertion Sort';
 export const selectionSort = 'Selection Sort';
+export const quickSort = 'Quick Sort';
+export const mergeSort = 'Merge Sort';
 
 export interface SortResult {
   swaps: number;
