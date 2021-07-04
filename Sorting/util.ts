@@ -9,6 +9,8 @@ export const iMergeSort = 'Iterative Merge Sort';
 export const rMergeSort = 'Recursive Merge Sort';
 export const countSort = 'Count Sort';
 export const bucketSort = 'Bucket Sort';
+export const shellSort = 'Shell Sort';
+export const radixSort = 'Radix Sort';
 
 export interface SortResult {
   swaps: number;

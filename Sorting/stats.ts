@@ -6,7 +6,8 @@ import { insertion_sort } from "./insertion.sort";
 import { i_merge_sort, r_merge_sort } from "./merge.sort";
 import { quick_sort } from "./quick.sort";
 import { selection_sort } from "./selection.sort";
-import { bubbleSort, bucketSort, countSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort } from "./util";
+import { shell_sort } from "./shell.sort";
+import { bubbleSort, bucketSort, countSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort, shellSort } from "./util";
 
 const Table = require('cli-table');
 const chalk = require('chalk');
@@ -20,7 +21,7 @@ export class Stats {
     {inputSize: 1000, inputRange: 5000},
     {inputSize: 10000, inputRange: 50000},
     {inputSize: 50000, inputRange: 90000},
-    // {inputSize: 100000, inputRange: 500000},
+    {inputSize: 100000, inputRange: 500000},
   ];
 
   testInputsLowRange = [
@@ -29,7 +30,7 @@ export class Stats {
     {inputSize: 1000, inputRange: 500},
     {inputSize: 10000, inputRange: 500},
     {inputSize: 50000, inputRange: 500},
-    // {inputSize: 100000, inputRange: 500},
+    {inputSize: 100000, inputRange: 500},
   ];
 
   progressBar = new ProgressBar();
@@ -80,6 +81,7 @@ export class Stats {
     const rMergeStats = this.getStats(r_merge_sort, rMergeSort, lowRange);
     const countStats = this.getStats(count_sort, countSort, lowRange);
     const bucketStats = this.getStats(bucket_sort, bucketSort, lowRange);
+    const shellStats = this.getStats(shell_sort, shellSort, lowRange);
     let aggregate = [
       bubbleStats,
       insertionStats,
@@ -88,7 +90,8 @@ export class Stats {
       iMergeStats,
       rMergeStats,
       countStats,
-      bucketStats
+      bucketStats,
+      shellStats
     ];
     const inputs = lowRange ? this.testInputsLowRange : this.testInputs;
     this.printStats(aggregate, inputs);
