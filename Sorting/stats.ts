@@ -1,11 +1,12 @@
 import { bgMagenta } from "../log";
 import { bubble_sort } from "./bubble.sort";
+import { bucket_sort } from "./bucket.sort";
 import { count_sort } from "./count.sort";
 import { insertion_sort } from "./insertion.sort";
 import { i_merge_sort, r_merge_sort } from "./merge.sort";
 import { quick_sort } from "./quick.sort";
 import { selection_sort } from "./selection.sort";
-import { bubbleSort, countSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort } from "./util";
+import { bubbleSort, bucketSort, countSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort } from "./util";
 
 const Table = require('cli-table');
 const chalk = require('chalk');
@@ -18,7 +19,7 @@ export class Stats {
     {inputSize: 500, inputRange: 1000},
     {inputSize: 1000, inputRange: 5000},
     {inputSize: 10000, inputRange: 50000},
-    // {inputSize: 50000, inputRange: 90000},
+    {inputSize: 50000, inputRange: 90000},
     // {inputSize: 100000, inputRange: 500000},
   ];
 
@@ -27,7 +28,7 @@ export class Stats {
     {inputSize: 500, inputRange: 500},
     {inputSize: 1000, inputRange: 500},
     {inputSize: 10000, inputRange: 500},
-    // {inputSize: 50000, inputRange: 500},
+    {inputSize: 50000, inputRange: 500},
     // {inputSize: 100000, inputRange: 500},
   ];
 
@@ -78,6 +79,7 @@ export class Stats {
     const iMergeStats = this.getStats(i_merge_sort, iMergeSort, lowRange);
     const rMergeStats = this.getStats(r_merge_sort, rMergeSort, lowRange);
     const countStats = this.getStats(count_sort, countSort, lowRange);
+    const bucketStats = this.getStats(bucket_sort, bucketSort, lowRange);
     let aggregate = [
       bubbleStats,
       insertionStats,
@@ -85,7 +87,8 @@ export class Stats {
       quickStats,
       iMergeStats,
       rMergeStats,
-      countStats
+      countStats,
+      bucketStats
     ];
     const inputs = lowRange ? this.testInputsLowRange : this.testInputs;
     this.printStats(aggregate, inputs);

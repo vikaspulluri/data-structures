@@ -1,5 +1,6 @@
 import { blue, green, magenta, yellow } from "../log";
 import { bubble_sort } from "./bubble.sort";
+import { bucket_sort } from "./bucket.sort";
 import { count_sort } from "./count.sort";
 import { insertion_sort } from "./insertion.sort";
 import { i_merge_sort, r_merge_sort } from "./merge.sort";
@@ -79,6 +80,13 @@ class SortSimulator {
     blue(`Array: ${count.result}`);
   }
 
+  bucketSort() {
+    console.time(countSort);
+    const bucket = bucket_sort(array.slice());
+    console.timeEnd(countSort);
+    blue(`Array: ${bucket.result}`);
+  }
+
   printStats(lowRange: boolean = false) {
     const stats = new Stats();
     stats.getAllSortStats(lowRange);
@@ -89,4 +97,4 @@ class SortSimulator {
 const sim = new SortSimulator();
 sim.printStats();
 sim.printStats(true);
-// sim.countSort();
+// sim.bucketSort();
