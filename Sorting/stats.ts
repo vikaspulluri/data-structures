@@ -1,9 +1,11 @@
+import { bgMagenta } from "../log";
 import { bubble_sort } from "./bubble.sort";
+import { count_sort } from "./count.sort";
 import { insertion_sort } from "./insertion.sort";
 import { i_merge_sort, r_merge_sort } from "./merge.sort";
 import { quick_sort } from "./quick.sort";
 import { selection_sort } from "./selection.sort";
-import { bubbleSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort } from "./util";
+import { bubbleSort, countSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort } from "./util";
 
 const Table = require('cli-table');
 const chalk = require('chalk');
@@ -20,9 +22,16 @@ export class Stats {
     // {inputSize: 100000, inputRange: 500000},
   ];
 
+  testInputsLowRange = [
+    {inputSize: 100, inputRange: 500},
+    {inputSize: 500, inputRange: 500},
+    {inputSize: 1000, inputRange: 500},
+    {inputSize: 10000, inputRange: 500},
+    // {inputSize: 50000, inputRange: 500},
+    // {inputSize: 100000, inputRange: 500},
+  ];
+
   progressBar = new ProgressBar();
-  tableHead = ['Input Size'].concat(this.testInputs.map(input => input.inputSize.toString())).concat(['Comparisons', 'Swaps']);
-  table = new Table({ head: this.tableHead });
 
   elapsedTime(note) {
     var elapsed = process.hrtime(this.start)[1] / 1000000; // divide by a million to get nano to milli
@@ -32,23 +41,24 @@ export class Stats {
     return {log, time: parseFloat(time)};
   }
 
-  getStats(cb: Function, name = cb.name) {
+  getStats(cb: Function, name = cb.name, lowRange: boolean = false) {
+    const inputs = lowRange ? this.testInputsLowRange : this.testInputs;
     const bar = this.progressBar.create(name);
-    bar.start(this.testInputs.length);
+    bar.start(inputs.length);
     this.start = process.hrtime();
     let data = {
       sort: {},
       array_generation: {'Array Generation': []},
     };
     data.sort[name] = [];
-    this.testInputs.forEach((input, i) => {
+    inputs.forEach((input, i) => {
       const array = randomArray(input.inputSize, input.inputRange);
       let { log } = this.elapsedTime('Generating Array');
       data.array_generation['Array Generation'].push(log);
       const sortedResult = cb(array);
       let execTime = this.elapsedTime(`${name} Sort Execution Time`);
       data.sort[name].push(execTime.log);
-      if (i === this.testInputs.length - 1) {
+      if (i === inputs.length - 1) {
         data.sort[name].push(sortedResult.comparisons);
         data.sort[name].push(sortedResult.swaps);
       }
@@ -59,13 +69,15 @@ export class Stats {
   }
 
 
-  getAllSortStats() {
-    const bubbleStats = this.getStats(bubble_sort, bubbleSort);
-    const insertionStats = this.getStats(insertion_sort, insertionSort);
-    const selectionStats = this.getStats(selection_sort, selectionSort);
-    const quickStats = this.getStats(quick_sort, quickSort);
-    const iMergeStats = this.getStats(i_merge_sort, iMergeSort);
-    const rMergeStats = this.getStats(r_merge_sort, rMergeSort);
+  getAllSortStats(lowRange: boolean) {
+    bgMagenta(`####################### ${lowRange ? 'Low Range Inputs' : 'High Range Inputs'} #######################`);
+    const bubbleStats = this.getStats(bubble_sort, bubbleSort, lowRange);
+    const insertionStats = this.getStats(insertion_sort, insertionSort, lowRange);
+    const selectionStats = this.getStats(selection_sort, selectionSort, lowRange);
+    const quickStats = this.getStats(quick_sort, quickSort, lowRange);
+    const iMergeStats = this.getStats(i_merge_sort, iMergeSort, lowRange);
+    const rMergeStats = this.getStats(r_merge_sort, rMergeSort, lowRange);
+    const countStats = this.getStats(count_sort, countSort, lowRange);
     let aggregate = [
       bubbleStats,
       insertionStats,
@@ -73,13 +85,17 @@ export class Stats {
       quickStats,
       iMergeStats,
       rMergeStats,
+      countStats
     ];
-    this.printStats(aggregate);
+    const inputs = lowRange ? this.testInputsLowRange : this.testInputs;
+    this.printStats(aggregate, inputs);
   }
 
-  printStats(data) {
-    Array.isArray(data) ? data.forEach(row => this.table.push(row.sort)) : this.table.push(data);
-    console.log(this.table.toString());
+  printStats(data, inputs) {
+    const tableHead = ['Input Size / Input Range'].concat(inputs.map(input => input.inputSize.toString().concat(' / '+input.inputRange.toString()))).concat(['Comparisons', 'Swaps']);
+    const table = new Table({ head: tableHead });
+    Array.isArray(data) ? data.forEach(row => table.push(row.sort)) : table.push(data);
+    console.log(table.toString());
   }
 
   // findMinMax(aggregate) {

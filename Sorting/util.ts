@@ -7,6 +7,7 @@ export const quickSort = 'Quick Sort';
 export const mergeSort = 'Merge Sort';
 export const iMergeSort = 'Iterative Merge Sort';
 export const rMergeSort = 'Recursive Merge Sort';
+export const countSort = 'Count Sort';
 
 export interface SortResult {
   swaps: number;
