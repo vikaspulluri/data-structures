@@ -16,7 +16,8 @@
   "scripts": {
     "array": "tsc && node dist/Array/index.js",
     "test": "tsc && node dist/index.js",
-    "sort": "tsc && node dist/Sorting/index.js"
+    "sort": "tsc && node dist/Sorting/index.js",
+    "list": "tsc && node dist/List/index.js"
   },
   "repository": {
     "type": "git",
