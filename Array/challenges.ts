@@ -48,3 +48,20 @@ export function removeDuplicates(nums: number[]) {
   return nums;
 }
 
+export function pairs(k, arr) {
+  // Write your code here
+  let count = 0;
+  let dict = {};
+  for (let i=0;i<arr.length;i++) {
+    console.log(arr[i], dict);
+      if (arr[i] in dict) {
+          count++;
+      } else {
+        dict[arr[i] + k] = 0;
+        dict[arr[i] - k] = 0;
+      }
+      console.log(dict);
+  }
+  return count;
+}
+

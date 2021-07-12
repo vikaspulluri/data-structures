@@ -17,8 +17,9 @@ export class SingleLinkedList {
   }
 
   insert(data, position: number) {
-    if (position < 0) return 'invalid position';
-    if (position === 0) { // first node
+    if (position <= 0) return 'Invalid position';
+    if (this.isSorted()) return this.insert_sorted(data);
+    if (position === 1) { // first node
       let node = new Node(data);
       node.next = this.head;
       this.head = node;
@@ -33,6 +34,17 @@ export class SingleLinkedList {
         cur.next = node;
       }
     }
+  }
+
+  insert_sorted(data) {
+    let prev = null, cur = this.head;
+    while(cur && cur.data < data) {
+      prev = cur;
+      cur = cur.next;
+    }
+    let node = new Node(data);
+    node.next = cur;
+    prev ? prev.next = node : this.head = node; // whether it is first node or not
   }
 
   display() {
@@ -136,13 +148,70 @@ export class SingleLinkedList {
     return null;
   }
 
-  delete() {}
+  delete(position: number) {
+    if (position <= 0) return 'Invalid position';
+    let cur = this.head; let prev = null;
+    let data;
+    for(let i=0; i<position-1;i++) {
+      prev = cur;
+      cur = cur.next;
+    }
+    if (prev) {
+      prev.next = cur.next;
+      data = cur.data;
+    } else { // position = 1
+      data = this.head.data;
+      this.head = null;
+    }
+    return data;
+  }
 
-  isSorted() {}
+  isSorted() {
+    let cur = this.head;
+    let x = cur.data;
+    while(cur) {
+      if (cur.data < x) { // ascending order
+        return false;
+      }
+      x = cur.data;
+      cur = cur.next;
+    }
+    return true;
+  }
 
-  removeDuplicates() {}
+  removeDuplicates() {
+    let cur = this.head, next = cur.next;
+    while(next !== null) {
+      if (cur.data !== next.data) {
+        cur = next;
+        next = next.next;
+      } else {
+        cur.next = next.next;
+        next = cur.next;
+      }
+    }
+  }
 
-  reverse() {}
+  reverse() {
+    let p = this.head, q = null, r = null;
+    while(p) {
+      r = q;
+      q = p;
+      p = p.next;
+
+      q.next = r;
+    }
+    this.head = q;
+  }
+
+  r_reverse(q = null, p = this.head) {
+    if (p) {
+      this.r_reverse(p, p.next);
+      p.next = q;
+    } else {
+      this.head = q;
+    }
+  }
 
   concat(list2) {}
 
