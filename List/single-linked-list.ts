@@ -7,6 +7,15 @@ export class SingleLinkedList {
     this.head = new Node(data);
   }
 
+  create(arr: any[]) {
+    let cur = this.head;
+    for(let i = 0; i<arr.length;i++) {
+      let node = new Node(arr[i]);
+      cur.next = node;
+      cur = cur.next;
+    }
+  }
+
   append(data) {
     let cur = this.head;
     while(cur.next) {
@@ -213,10 +222,51 @@ export class SingleLinkedList {
     }
   }
 
-  concat(list2) {}
+  concat(list1 = this, list2: SingleLinkedList) {
+    let tmp = list1.head;
+    while(tmp.next) {
+      tmp = tmp.next;
+    }
+    tmp.next = list2.head;
+  }
 
-  merge(list) {}
+  merge(list1: SingleLinkedList = this, list2: SingleLinkedList) {
+    let p = list1.head, q = list2.head;
+    let last, third;
+    if (p.data <= q.data) {
+      third = last = p;
+      p = p.next;
+      third.next = null;
+    } else {
+      third = last = q;
+      q = q.next;
+      third.next = null;
+    }
+    while(p && q) {
+      if (p.data <= q.data) {
+        last.next = p;
+        last = p;
+        p = p.next;
+        last.next = null;
+      } else {
+        last.next = q;
+        last = q;
+        q = q.next;
+        last.next = null;
+      }
+    }
+    if (p) last.next = p;
+    if (q) last.next = q;
+  }
 
-  findLoop() {}
+  hasLoop() {
+    let p = this.head, q = p;
+    while(p && q && p !== q) {
+      p = p.next;
+      q = q.next;
+      if (q) q = q.next; // moving 2 steps ahead
+    }
+    return p === q;
+  }
 
 }
