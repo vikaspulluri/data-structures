@@ -1,3 +1,4 @@
+import { Stack } from "../Stack/Stack";
 import { blue, green, yellow } from "../log";
 import { Node } from "./Node";
 
@@ -59,9 +60,10 @@ export class SingleLinkedList {
   display() {
     let tmp = this.head;
     while(tmp !== null) {
-      yellow(tmp.data);
+      process.stdout.write(`${tmp.data}, `);
       tmp = tmp.next;
     }
+    console.log('');
   }
 
   rdisplay(node = this.head) {
@@ -267,6 +269,37 @@ export class SingleLinkedList {
       if (q) q = q.next; // moving 2 steps ahead
     }
     return p === q;
+  }
+
+  middle() {
+    let tmp = this.head;
+    let p = this.head;
+    while(tmp) {
+      tmp = tmp.next;
+      if (tmp) tmp = tmp.next;
+      if (tmp) p = p.next;
+    }
+    return p.data;
+  }
+
+  intersection(list1: SingleLinkedList, list2: SingleLinkedList) {
+    const stack1 = new Stack();
+    const stack2 = new Stack();
+    let p = list1.head;
+    let q = list2.head;
+    while(p) {
+      stack1.push(p.data);
+      p = p.next;
+    }
+    while(q) {
+      stack2.push(q.data);
+      q = q.next;
+    }
+    while(stack1.top() === stack2.top()) {
+      p = stack1.pop();
+      stack2.pop();
+    }
+    return p;
   }
 
 }
