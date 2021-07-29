@@ -6,8 +6,11 @@
     "chalk": "^4.1.1",
     "cli-progress": "^3.9.0",
     "cli-table": "^0.3.6",
+    "inquirer": "^8.1.2",
     "jest": "^25.4.0",
     "parcel": "^1.12.4",
+    "readline-sync": "^1.4.10",
+    "treeify": "^1.1.0",
     "typescript": "^4.3.2"
   },
   "devDependencies": {
@@ -17,7 +20,9 @@
     "array": "tsc && node dist/Array/index.js",
     "test": "tsc && node dist/index.js",
     "sort": "tsc && node dist/Sorting/index.js",
-    "list": "tsc && node dist/List/index.js"
+    "list": "tsc && node dist/List/index.js",
+    "queue": "tsc && node dist/Queue/index.js",
+    "tree": "tsc && node dist/Tree/index.js"
   },
   "repository": {
     "type": "git",
