@@ -108,4 +108,34 @@ export class BinaryTree {
       }
     }
   }
+
+  count(node = this.root) {
+    let x,y;
+    if (node) {
+      x = this.count(node.left);
+      y = this.count(node.right);
+      return x + y + 1;
+      /**
+       * count nodes which are having both children 
+       * return (node.left && node.right) ? x+y+1 : x+y;
+       * sum of nodes
+       * return x+y+node.data;
+       * leaf nodes count
+       * return (!node.left && !node.right) ? x+y+1 : x+y
+       * nodes with degree 1 or 2
+       * return (node.left || node.right) ? x+y+1 : x+y
+       * nodes with degree 1
+       * return (node.left ^ node.right) ? x+y+1 : x+y; // exclusive OR
+      */
+    }
+    return 0;
+  }
+
+  height(node = this.root) {
+    let x = 0, y = 0;
+    if (!node) return 0;
+    x = this.height(node.left);
+    y = this.height(node.right);
+    return x>y ? x+1 : y+1;
+  }
 }
