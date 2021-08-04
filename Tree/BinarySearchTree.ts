@@ -8,6 +8,7 @@ export class BinarySearchTree {
     this.root = new Node(arr[0]);
     for(let i=1; i<arr.length;i++) {
       this.insert(arr[i]);
+      // this.rinsert(this.root, arr[i]);
     }
   }
 
