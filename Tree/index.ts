@@ -3,6 +3,7 @@ import { randomArray } from "../Sorting/util";
 import { BalancedBinarySearchTree } from "./AVLTree";
 import { BinarySearchTree } from "./BinarySearchTree";
 import { BinaryTree } from "./BinaryTree";
+import { Heap } from "./Heap";
 
 export class TreeSimulator {
   binaryTree() {
@@ -33,17 +34,29 @@ export class TreeSimulator {
     console.log('root: ', bbst.root.data);
     console.log('height of tree: ', bbst.height());
   }
+
+  heap() {
+    const heap = new Heap();
+    const arr = randomArray(10);
+    heap.create(arr);
+    heap.display();
+    heap.heapify(arr);
+    // heap.sort();
+    heap.display();
+  }
 }
 
 const tree = new TreeSimulator();
 // tree.bbst();
-const array = randomArray(128, 10000);
-const bst = new BinarySearchTree();
-const bbst = new BalancedBinarySearchTree();
-bst.create(array);
-bbst.create(array);
-blue(`bst vs bbst height: , ${bst.height()}, ${bbst.height()}`);
-green(`root of bst vs bbst: ${bst.root.data} vs ${bbst.root.data}`);
+// const array = randomArray(128, 10000);
+// const bst = new BinarySearchTree();
+// const bbst = new BalancedBinarySearchTree();
+// bst.create(array);
+// bbst.create(array);
+// blue(`bst vs bbst height: , ${bst.height()}, ${bbst.height()}`);
+// green(`root of bst vs bbst: ${bst.root.data} vs ${bbst.root.data}`);
+
+tree.heap();
 
 
 

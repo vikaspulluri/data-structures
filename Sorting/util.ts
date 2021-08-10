@@ -11,6 +11,7 @@ export const countSort = 'Count Sort';
 export const bucketSort = 'Bucket Sort';
 export const shellSort = 'Shell Sort';
 export const radixSort = 'Radix Sort';
+export const heapSort = 'Heap Sort';
 
 export interface SortResult {
   swaps: number;

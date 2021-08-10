@@ -2,13 +2,14 @@ import { blue, green, magenta, yellow } from "../log";
 import { bubble_sort } from "./bubble.sort";
 import { bucket_sort } from "./bucket.sort";
 import { count_sort } from "./count.sort";
+import { heap_sort } from "./heap.sort";
 import { insertion_sort } from "./insertion.sort";
 import { i_merge_sort, r_merge_sort } from "./merge.sort";
 import { quick_sort } from "./quick.sort";
 import { selection_sort } from "./selection.sort";
 import { shell_sort } from "./shell.sort";
 import { Stats } from "./stats";
-import { bubbleSort, countSort, iMergeSort, insertionSort, randomArray, rMergeSort, selectionSort, shellSort } from "./util";
+import { bubbleSort, countSort, heapSort, iMergeSort, insertionSort, randomArray, rMergeSort, selectionSort, shellSort } from "./util";
 
 const array = randomArray(100);
 
@@ -92,10 +93,16 @@ class SortSimulator {
     console.time(shellSort);
     const shell = shell_sort(array.slice());
     console.timeEnd(shellSort);
-    console.log(shell);
     magenta(`Comparisons: ${shell.comparisons}`);
     yellow(`Swaps: ${shell.swaps}`);
     blue(`Array: ${shell.result}`);
+  }
+
+  heapSort() {
+    console.time(heapSort);
+    const heap = heap_sort(array.slice());
+    console.timeEnd(heapSort);
+    blue(`Array: ${heap.result}`);
   }
 
   printStats(lowRange: boolean = false) {
@@ -109,3 +116,4 @@ const sim = new SortSimulator();
 sim.printStats();
 sim.printStats(true);
 // sim.shellSort();
+// sim.heapSort();
