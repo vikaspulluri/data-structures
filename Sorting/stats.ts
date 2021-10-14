@@ -11,7 +11,6 @@ import { shell_sort } from "./shell.sort";
 import { bubbleSort, bucketSort, countSort, heapSort, iMergeSort, insertionSort, ProgressBar, quickSort, randomArray, rMergeSort, selectionSort, shellSort } from "./util";
 
 const Table = require('cli-table');
-const chalk = require('chalk');
 
 export class Stats {
   start;
