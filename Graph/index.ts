@@ -1,4 +1,6 @@
 import PrimsMST from './prims-min-spanning-tree';
+import BFS from './bfs';
+import DFS from './dfs';
 
 const I = Infinity;
 
@@ -14,6 +16,24 @@ class Graph {
     [I, I, 10, I, 14, 18, I, I],
   ];
 
+  private graph = [
+    [0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,0],
+    [0,1,0,0,1,0,0],
+    [0,1,0,0,1,0,0],
+    [0,0,1,1,0,1,1],
+    [0,0,0,0,1,0,0],
+    [0,0,0,0,1,0,0]
+  ];
+
+  bfs() {
+    BFS(this.graph, 4);
+  }
+
+  dfs() {
+    DFS(this.graph, 4);
+  }
+
   primsMST() {
     PrimsMST(this.cost);
   }
@@ -21,4 +41,6 @@ class Graph {
 
 const graph = new Graph();
 
-graph.primsMST();
+// graph.primsMST();
+// graph.bfs();
+graph.dfs();
