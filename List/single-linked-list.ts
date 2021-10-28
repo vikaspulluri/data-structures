@@ -261,6 +261,11 @@ export class SingleLinkedList {
     if (q) last.next = q;
   }
 
+  /**
+   * Floyds cycle - finding algorithm
+   * wont work for duplicated nodes
+   * @returns 
+   */
   hasLoop() {
     let p = this.head, q = p;
     while(p && q && p !== q) {
@@ -269,6 +274,17 @@ export class SingleLinkedList {
       if (q) q = q.next; // moving 2 steps ahead
     }
     return p === q;
+  }
+
+  hasLoop2(head = this.head) {
+    while (head) {
+            
+      if (head.data === -1) return true;
+      
+      head.data = -1;
+      head = head.next;
+    }
+    return false;
   }
 
   middle() {
@@ -280,6 +296,19 @@ export class SingleLinkedList {
       if (tmp) p = p.next;
     }
     return p.data;
+  }
+
+  middle2(node = this.head) {
+    let count = 0;
+    let mid = node;
+    while (node) {
+        if (count % 2 === 1) {
+            mid = mid.next;
+        }
+        count++;
+        node = node.next;
+    }
+    return mid.data;
   }
 
   intersection(list1: SingleLinkedList, list2: SingleLinkedList) {
@@ -300,6 +329,25 @@ export class SingleLinkedList {
       stack2.pop();
     }
     return p;
+  }
+
+  removeLoop(head) {
+    //your code here
+    const node = this.getLoopNode(head);
+    if (node) {
+        node.next = null;
+    }
+  }
+    
+  getLoopNode(head) {
+    let prev = head;
+    while(head) {
+        if (head.visited) return prev;
+        head.visited = true;
+        prev = head;
+        head = head.next;
+    }
+    return head;
   }
 
 }

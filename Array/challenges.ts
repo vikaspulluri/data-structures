@@ -65,3 +65,28 @@ export function pairs(k, arr) {
   return count;
 }
 
+export function min_no_of_jumps(arr) {
+  let i = 0, steps = 0, n = arr.length;
+  while(i <= n) {
+    let val = arr[i];
+    if (val === 0 && i !== n) return -1;
+    i = val + i;
+    steps++;
+  }
+  return steps;
+}
+
+export function maxSubarrayDP(arr) {
+  let localMax = arr[0]; // current max
+  let globalMax = arr[0]; // max so far
+  
+  for (let i = 1; i < arr.length; i++) {
+      localMax = Math.max(arr[i], arr[i] + localMax);
+      globalMax = Math.max(localMax, globalMax);
+  }
+  return globalMax;
+}
+
+
+
+

@@ -12,6 +12,10 @@ export class TreeSimulator {
     binaryTree.create();
     binaryTree.preorder();
     binaryTree.levelorder();
+    console.log('left view using recursion: ');
+    binaryTree.leftView();
+    console.log('left view using queues: ')
+    binaryTree.leftViewUsingQueue();
   }
 
   bst() {
@@ -24,6 +28,7 @@ export class TreeSimulator {
     bst.delete(bst.root, key);
     console.log('after deleting: ', key);
     bst.display();
+    console.log('is bst: ', bst.isBst2(bst.root));
   }
 
   bbst() {
@@ -56,7 +61,9 @@ const tree = new TreeSimulator();
 // blue(`bst vs bbst height: , ${bst.height()}, ${bbst.height()}`);
 // green(`root of bst vs bbst: ${bst.root.data} vs ${bbst.root.data}`);
 
-tree.heap();
+// tree.heap();
+// tree.bst();
+tree.binaryTree();
 
 
 

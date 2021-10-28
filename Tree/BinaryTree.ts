@@ -8,6 +8,7 @@ const rliSync = require('readline-sync');
 export class BinaryTree {
 
   root: Node;
+  maxLevel = 0;
 
   create() {
     const q = new Queue();
@@ -138,4 +139,35 @@ export class BinaryTree {
     y = this.height(node.right);
     return x>y ? x+1 : y+1;
   }
+
+  leftView(node = this.root, level = 1) {
+    if (!node) return;
+
+    if (this.maxLevel < level) { // if it is the first node of the level
+      console.log(node.data);
+      this.maxLevel = level;
+    }
+    this.leftView(node.left, level + 1);
+    this.leftView(node.right, level + 1);
+  }
+
+  leftViewUsingQueue(node = this.root) {
+    if (!node) return;
+    const q = new Queue();
+    q.enqueue(node);
+
+    while(!q.isEmpty()) {
+      const n = q.size();
+      for (let i = 1; i <= n; i++) {
+        const tmp = q.dequeue();
+        if (i === 1) {
+          console.log(tmp.data);
+        }
+        if (tmp.left) q.enqueue(tmp.left);
+        if (tmp.right) q.enqueue(tmp.right);
+      }
+    }
+
+  }
+
 }

@@ -114,4 +114,36 @@ export class BinarySearchTree {
     console.log('############### inorder traversal ###############');
     this.inorder();
   }
+
+  /**
+   * Time complexity O(n)
+   * Auxiliary space O(1)
+   * @param node 
+   * @returns 
+   */
+  isBst(node = this.root, min = Number.MIN_VALUE, max = Number.MAX_VALUE) {
+    if (node === null) return true; // empty tree is BST
+
+    if (node.data < min || node.data > max) return false;
+
+    return this.isBst(node.left, min, node.data - 1) && this.isBst(node.right, node.data + 1, max);
+
+  }
+
+  /**
+   * inorder traversal of tree gives sorted list, check whether it is sorted or not
+   * Time complexity O(n)
+   * Auxiliary space O(1)
+   */
+  isBst2(node = this.root, prev = null) {
+
+    if (node !== null) {
+      if (!this.isBst2(node.left, prev)) return false;
+
+      if (prev !== null && node.data <= prev.data) return false;
+
+      return this.isBst2(node.right, node);
+    }
+    return true;
+  }
 }
