@@ -50,6 +50,16 @@ export class BinarySearchTree {
     return null;
   }
 
+  rsearch(node = this.root, x) {
+    // your code here
+    if (!node) return false;
+    if (node) {
+        if (node.data == x) return true;
+        if (node.data < x) return this.rsearch(node.right,x);
+        if (node.data > x) return this.rsearch(node.left,x);
+    }
+  }
+
   rinsert(node = this.root, key) {
     if (node === null) {
       let tmp = new Node(key);

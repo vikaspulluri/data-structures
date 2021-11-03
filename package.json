@@ -22,7 +22,8 @@
     "list": "tsc && node dist/List/index.js",
     "queue": "tsc && node dist/Queue/index.js",
     "tree": "tsc && node dist/Tree/index.js",
-    "graph": "tsc && node dist/Graph/index.js"
+    "graph": "tsc && node dist/Graph/index.js",
+    "algos": "tsc && node dist/Algos/index.js"
   },
   "repository": {
     "type": "git",

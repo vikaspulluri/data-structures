@@ -3,6 +3,7 @@ export class Node {
   left: Node;
   right: Node;
   height: number;
+  hd?: number;
   constructor(data) {
     this.data = data;
     this.left = null;

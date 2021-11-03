@@ -10,12 +10,16 @@ export class TreeSimulator {
     const binaryTree = new BinaryTree();
 
     binaryTree.create();
-    binaryTree.preorder();
-    binaryTree.levelorder();
-    console.log('left view using recursion: ');
-    binaryTree.leftView();
-    console.log('left view using queues: ')
-    binaryTree.leftViewUsingQueue();
+    // binaryTree.preorder();
+    // binaryTree.levelorder();
+    console.log(binaryTree.height());
+    // console.log('left view using recursion: ');
+    // binaryTree.leftView();
+    // console.log('left view using queues: ')
+    // binaryTree.leftViewUsingQueue();
+    // console.log('top view:');
+    // binaryTree.topView();
+    // console.log(binaryTree.doesAllLeafsOnSameLevel());
   }
 
   bst() {

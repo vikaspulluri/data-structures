@@ -167,7 +167,67 @@ export class BinaryTree {
         if (tmp.right) q.enqueue(tmp.right);
       }
     }
+  }
 
+  topView(node = this.root) {
+    let q = new Queue();
+    if (!node.hd) node.hd = 0;
+    let map = new Map();
+    let res = [];
+    q.enqueue(node);
+    if (!map.has(node.hd)) map.set(node.hd, node.data);
+    while(!q.isEmpty()) {
+      const left = node.left;
+      const right = node.right;
+      if (node.left) {
+        left.hd = node.hd - 1;
+        if (!map.has(left.hd)) map.set(left.hd, left.data);
+        q.enqueue(left);
+      }
+      if (right) {
+        right.hd = node.hd + 1;
+        if (!map.has(right.hd)) map.set(right.hd, right.data);
+        q.enqueue(right);
+      }
+      node = q.dequeue();
+    }
+    let vals = Array.from(map);
+    vals.sort((a,b) => a[0] - b[0]);
+    for (let [key, value] of vals) {
+        res.push(value);
+    }
+    console.log(res);
+  }
+
+  doesAllLeafsOnSameLevel(node = this.root) {
+    const level = 0;
+    let leafLevel = 0;
+
+    function checkUtil(node, level) {
+      if (!node) return true;
+      if (!node.left && !node.right) { // leaf node
+        if (leafLevel === 0) {
+          leafLevel = level;
+          return true;
+        }
+        return level === leafLevel;
+      }
+      return checkUtil(node.left, level + 1) && checkUtil(node.right, level + 1);
+    }
+    return checkUtil(node, level);
+  }
+
+  mirror(node) {
+    // your code here
+    if (node) {
+      let right = node.right;
+      let left = node.left;
+      node.left = right;
+      node.right = left;
+      this.mirror(node.left);
+      this.mirror(node.right);
+    }
+    return null;
   }
 
 }
