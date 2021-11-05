@@ -19,3 +19,26 @@ export function convertToWave(arr){
     i++;
   }
 }
+
+export function isPolyndrome(n) {
+  if (Number.isInteger((n))) {
+    let r = 0;
+    let tmp = n;
+    let k = 10;
+    while(tmp > 0) {
+      let rem = tmp % k;
+      r = (r * k) + rem;
+      tmp = Math.floor(tmp / k);
+    }
+    console.log(n, r, n === r);
+    return n === r;
+  }
+  let i = 0, j = n.length - 1;
+  while(i < j) {
+    if (n[i] != n[j]) { console.log(false); return false;}
+    i++;
+    j--;
+  }
+  console.log(true);
+  return true;
+}

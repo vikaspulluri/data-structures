@@ -1,6 +1,6 @@
 import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicates, sumOfPair, sumOfPairSorted, deleteDuplicatesSortedInPlace, duplicatesInPlace } from "./array-operations";
 import { bgBlue, yellow, green, cyan, magenta, bgYellow, bgGreen, blue, bgMagenta, bgCyan, bgRed } from "../log";
-import { pairs, removeDuplicates, threeSum, dups } from "./challenges";
+import { pairs, removeDuplicates, threeSum, dups, insertPosition } from "./challenges";
 
 export class ArrayOperations {
   private a = [1,3,6,8,11];
@@ -67,6 +67,10 @@ export class Challenges {
   dups(arr) {
     green(dups(arr));
   }
+
+  insertPos(arr, t) {
+    green(insertPosition(arr, t));
+  }
 }
 
 const a = new ArrayOperations();
@@ -77,4 +81,6 @@ const c = new Challenges();
 // c.removeDuplicates();
 // c.pairs();
 let arr = [13, 9, 25,1,1,0,22,13,22,20,3,8,11,25,10,3,15,11,19,20,2,4,25,14,23,14];
-c.dups(arr);
+// c.dups(arr);
+let aa = [1,3,4,6];
+c.insertPos(aa, 7);

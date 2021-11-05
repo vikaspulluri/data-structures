@@ -101,6 +101,15 @@ export function dups(a) {
   return res;
 }
 
-
+export function insertPosition(arr, target) {
+  let i = 0, j = arr.length-1, mid;
+  while(i <= j) {
+      mid = Math.floor((i+j)/2);
+      if (arr[mid] === target) return mid;
+      if (arr[mid] < target) i = mid+1;
+      if (arr[mid] > target) j = mid-1
+  }
+  return i;
+}
 
 
