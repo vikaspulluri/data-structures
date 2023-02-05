@@ -112,4 +112,34 @@ export function insertPosition(arr, target) {
   return i;
 }
 
+export function sortedSquares(nums) {
+  let i = 0, j = nums.length - 1;
+    let squares = new Array(j+1);
+    for (let k=j;k>=0;k--) {
+        if(nums[j] >= Math.abs(nums[i])) {
+            squares[k] = nums[j] * nums[j];
+            j--;
+        } else if (nums[j] < Math.abs(nums[i])) {
+            squares[k] = nums[i] * nums[i];
+            i++;
+        } else {
+            squares[k] = nums[j] * nums[j];
+        }
+    }
+    return squares;
+}
+
+export const rotateArray = function(nums, k) {
+  let arr = [];
+  let n = nums.length;
+  for (let i=0;i<k;i++) {
+      arr.push(nums[n-k+i]);
+  }
+  console.log(arr);
+  for(let i=0;i<n-k;i++){
+      arr.push(nums[i]);
+  }
+  console.log(arr);
+  return arr;
+};
 

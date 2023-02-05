@@ -23,7 +23,8 @@
     "queue": "tsc && node dist/Queue/index.js",
     "tree": "tsc && node dist/Tree/index.js",
     "graph": "tsc && node dist/Graph/index.js",
-    "algos": "tsc && node dist/Algos/index.js"
+    "algos": "tsc && node dist/Algos/index.js",
+    "string": "tsc && node dist/String/index.js"
   },
   "repository": {
     "type": "git",

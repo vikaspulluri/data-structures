@@ -14,8 +14,9 @@ export class Heap {
   insert(n: number) {
     let i = this.size;
     let tmp = n;
-    while(i>=1 && tmp > this.heapArr[Math.floor(i/2)]) {
-      this.heapArr[i] = this.heapArr[Math.floor(i/2)];
+    let parent = this.heapArr[Math.floor(i/2)];
+    while(i>=1 && tmp > parent) {
+      this.heapArr[i] = parent;
       i = Math.floor(i/2);
     }
     this.heapArr[i] = tmp;
@@ -27,7 +28,7 @@ export class Heap {
     this.heapArr[0] = this.heapArr[this.size-1];
     let i=0, j=(2*i)+1;
     while(j<this.size-1) {
-      if (this.heapArr[j+1] > this.heapArr[j]) j++;
+      if (this.heapArr[j+1] > this.heapArr[j]) j = j + 1;
       if (this.heapArr[i] < this.heapArr[j]) {
         [this.heapArr[i], this.heapArr[j]] = [this.heapArr[j], this.heapArr[i]];
         i = j;

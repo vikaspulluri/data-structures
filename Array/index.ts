@@ -1,6 +1,9 @@
 import { difference, intersection, merge, union, max_min, findMissingElements, findMissingElementsSpace, duplicates, sumOfPair, sumOfPairSorted, deleteDuplicatesSortedInPlace, duplicatesInPlace } from "./array-operations";
 import { bgBlue, yellow, green, cyan, magenta, bgYellow, bgGreen, blue, bgMagenta, bgCyan, bgRed } from "../log";
-import { pairs, removeDuplicates, threeSum, dups, insertPosition } from "./challenges";
+import { pairs, removeDuplicates, threeSum, dups, insertPosition, rotateArray } from "./challenges";
+import { removeDuplicatesInPlace } from "./remove-duplicates-inplace";
+import { maxProfitWithSingleTransaction } from "./buy-sell-stock";
+import * as kthElement from "./kth-smallest-element";
 
 export class ArrayOperations {
   private a = [1,3,6,8,11];
@@ -71,6 +74,9 @@ export class Challenges {
   insertPos(arr, t) {
     green(insertPosition(arr, t));
   }
+  rotate(arr, k) {
+    rotateArray(arr, k);
+  }
 }
 
 const a = new ArrayOperations();
@@ -83,4 +89,10 @@ const c = new Challenges();
 let arr = [13, 9, 25,1,1,0,22,13,22,20,3,8,11,25,10,3,15,11,19,20,2,4,25,14,23,14];
 // c.dups(arr);
 let aa = [1,3,4,6];
-c.insertPos(aa, 7);
+// c.insertPos(aa, 7);
+// c.rotate([1,2,3,4,5,6,7], 3);
+
+// green(removeDuplicatesInPlace([1,1,2]))
+// blue(maxProfitWithSingleTransaction([1,3,7,8]))
+
+kthElement.run()

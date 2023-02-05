@@ -4,6 +4,7 @@ import { BalancedBinarySearchTree } from "./AVLTree";
 import { BinarySearchTree } from "./BinarySearchTree";
 import { BinaryTree } from "./BinaryTree";
 import { Heap } from "./Heap";
+import { Trie } from "./Trie";
 
 export class TreeSimulator {
   binaryTree() {
@@ -46,7 +47,8 @@ export class TreeSimulator {
 
   heap() {
     const heap = new Heap();
-    const arr = randomArray(10);
+    // const arr = randomArray(10);
+    const arr = [1,2,3,4,5,6,7,8,9];
     heap.create(arr);
     heap.display();
     heap.heapify(arr);
@@ -65,10 +67,17 @@ const tree = new TreeSimulator();
 // blue(`bst vs bbst height: , ${bst.height()}, ${bbst.height()}`);
 // green(`root of bst vs bbst: ${bst.root.data} vs ${bbst.root.data}`);
 
-// tree.heap();
+tree.heap();
 // tree.bst();
-tree.binaryTree();
+// tree.binaryTree();
 
+// const trie = new Trie();
 
+// trie.insert('abc');
+// trie.insert('ant');
+// trie.insert('any');
+// trie.insert('animal');
+// trie.insert('and');
+// trie.insert('ball');
 
-
+// console.log(trie.prefixSearch('an'));
