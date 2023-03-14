@@ -230,4 +230,45 @@ export class BinaryTree {
     return null;
   }
 
+  sumRootToLeaf(root) {
+    return this.getSumHelper(root, 0, 0);
+  }
+
+  getSumHelper(node: Node | null, sum, path) {
+    path = (path * 10) + Number(node.data);
+    if (!node.left && !node.right) {
+        sum = sum + path;
+    } else {
+        if (node.left) {
+            sum = this.getSumHelper(node.left, sum, path);
+        }
+        if (node.right) {
+            sum = this.getSumHelper(node.right, sum, path)
+        }
+    }
+    return sum;
+  }
+
+  printRootToLeafPaths() {
+    const paths = [];
+    this.pathHelper(this.root, [], paths);
+    console.log({paths})
+  }
+
+  pathHelper(node: Node | null, path, paths) {
+    path.push(node.data);
+    if (!node.left && !node.right) {
+      paths.push(path.slice());
+    } else {
+      if (node.left) {
+        path = this.pathHelper(node.left, path, paths);
+      }
+      if (node.right) {
+        path = this.pathHelper(node.right, path, paths);
+      }
+    }
+    path.pop();
+    return path;
+  }
+
 }

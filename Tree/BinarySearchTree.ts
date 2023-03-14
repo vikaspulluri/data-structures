@@ -1,3 +1,4 @@
+import { Stack } from "../Stack/Stack";
 import { magenta } from "../log";
 import { Node } from "./Node";
 
@@ -155,5 +156,51 @@ export class BinarySearchTree {
       return this.isBst2(node.right, node);
     }
     return true;
+  }
+
+  sortedArrayToBST_recursive(nums: number[]) {
+    if (nums.length === 0) return null;
+    return this.sortedArrayToBST_rHelper(nums, 0, nums.length - 1);
+  }
+
+  sortedArrayToBST_rHelper(nums: number[], start: number, end: number) {
+    if (start > end) return null;
+    const mid = Math.floor((start + end) / 2);
+    const node = new Node(mid);
+    node.left = this.sortedArrayToBST_rHelper(nums, start, mid-1);
+    node.right = this.sortedArrayToBST_rHelper(nums, mid+1, end);
+    return node;
+  }
+
+  sortedArrayToBST_Iterative(nums: number[]) {
+    const n = nums.length;
+    if (n === 0) return null;
+    const head = new Node(0);
+
+    const nodeStack = new Stack();
+    const leftIdxStack = new Stack();
+    const rightIdxStack = new Stack();
+
+    while(!nodeStack.isEmpty()) {
+      const node = nodeStack.pop();
+      const left = leftIdxStack.pop();
+      const right = rightIdxStack.pop();
+
+      let mid = Math.floor((left + right) / 2);
+      node.data = nums[mid];
+
+      if (left <= mid-1) {
+        node.left = new Node(0);
+        nodeStack.push(node.left);
+        leftIdxStack.push(left);
+        rightIdxStack.push(mid-1);
+      }
+      if (right >= mid+1) {
+        node.right = new Node(0);
+        nodeStack.push(node.right);
+        leftIdxStack.push(mid+1);
+        rightIdxStack.push(right);
+      }
+    }
   }
 }

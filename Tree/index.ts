@@ -21,6 +21,9 @@ export class TreeSimulator {
     // console.log('top view:');
     // binaryTree.topView();
     // console.log(binaryTree.doesAllLeafsOnSameLevel());
+    // let sum = binaryTree.sumRootToLeaf(binaryTree.root);
+    // console.log({sum});
+    binaryTree.printRootToLeafPaths();
   }
 
   bst() {
@@ -67,9 +70,9 @@ const tree = new TreeSimulator();
 // blue(`bst vs bbst height: , ${bst.height()}, ${bbst.height()}`);
 // green(`root of bst vs bbst: ${bst.root.data} vs ${bbst.root.data}`);
 
-tree.heap();
+// tree.heap();
 // tree.bst();
-// tree.binaryTree();
+tree.binaryTree();
 
 // const trie = new Trie();
 
