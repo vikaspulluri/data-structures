@@ -23,7 +23,8 @@ export class TreeSimulator {
     // console.log(binaryTree.doesAllLeafsOnSameLevel());
     // let sum = binaryTree.sumRootToLeaf(binaryTree.root);
     // console.log({sum});
-    binaryTree.printRootToLeafPaths();
+    // binaryTree.printRootToLeafPaths();
+    binaryTree.isCompleteTree(binaryTree.root);
   }
 
   bst() {

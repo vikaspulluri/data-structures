@@ -271,4 +271,21 @@ export class BinaryTree {
     return path;
   }
 
+  isCompleteTree(root: Node | null): boolean {
+    const q = [root];
+    let isGapFound = false;
+    while(q.length > 0) {
+        for (let i=0;i<q.length;i++) {
+            let node = q.shift();
+            if (node === null) {
+                isGapFound = true;
+            } else {
+                if (isGapFound) return false;
+                q.push(node.left, node.right);
+            }
+        }
+    }
+    return true;
+  };
+
 }
