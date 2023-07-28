@@ -24,7 +24,8 @@
     "tree": "tsc && node dist/Tree/index.js",
     "graph": "tsc && node dist/Graph/index.js",
     "algos": "tsc && node dist/Algos/index.js",
-    "string": "tsc && node dist/String/index.js"
+    "string": "tsc && node dist/String/index.js",
+    "dp": "tsc && node dist/Algos/DP/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "esnext",
     "outDir": "dist/",
     "declaration": false,
     "sourceMap": true,
@@ -12,7 +12,7 @@
     "noUnusedParameters": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,    
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "*": [
