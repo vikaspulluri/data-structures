@@ -1,4 +1,5 @@
 import { logPerformance } from "../../perf-hook";
+import { editDistance, editDistance_memo } from "./edit-distance";
 import { gold_mine, gold_mine_memo_driver, gold_mine_tab } from "./gold-mine";
 import { max_robbery, max_robbery_memo, max_robbery_tab } from "./house-robber";
 import { lcs_rec, lcs_memoization, lcs_tabulation } from "./lcs";
@@ -49,6 +50,13 @@ class DP {
     logPerformance(gold_mine_memo_driver, matrix);
     logPerformance(gold_mine_tab, matrix);
   }
+
+  editDistance() {
+    const s1 = 'Hello Vikas!';
+    const s2 = 'Hiloo Viaks';
+    logPerformance(editDistance, s1, s2);
+    logPerformance(editDistance_memo, s1, s2)
+  }
 }
 
 const dp = new DP();
@@ -57,4 +65,5 @@ const dp = new DP();
 // dp.cost();
 // dp.paths();
 // dp.robbery();
-dp.goldMine();
+// dp.goldMine();
+dp.editDistance();
