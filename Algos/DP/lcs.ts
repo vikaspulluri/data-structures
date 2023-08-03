@@ -1,5 +1,3 @@
-import { logPerformance } from "../../perf-hook";
-
 export function lcs_rec(s1, s2, i = 0, j = 0) {
     if (!s1[i] || !s2[j]) return 0;
     else if (s1[i] === s2[j]) {
