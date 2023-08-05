@@ -1,4 +1,5 @@
 import { logPerformance } from "../../perf-hook";
+import { catalan, catalan_memo, catalan_tab } from "./catalan-number";
 import { coin_change, coin_change_memo, coin_change_tab } from "./coin-change";
 import { editDistance, editDistance_memo } from "./edit-distance";
 import { gold_mine, gold_mine_memo_driver, gold_mine_tab } from "./gold-mine";
@@ -80,6 +81,12 @@ class DP {
     const weights = [2, 4, 7, 10, 12, 15];
     logPerformance(knap_sack, values, weights, 31)
   }
+
+  catalan(n = 50) {
+    // logPerformance(catalan, n);
+    logPerformance(catalan_memo, n);
+    logPerformance(catalan_tab, n);
+  }
 }
 
 const dp = new DP();
@@ -92,4 +99,5 @@ const dp = new DP();
 // dp.editDistance();
 // dp.waysToJump();
 // dp.coinChange();
-dp.knapSack();
+// dp.knapSack();
+dp.catalan();
