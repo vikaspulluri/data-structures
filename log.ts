@@ -41,7 +41,7 @@ export function bgRed(msg) {
 }
 
 export function bgCyan(msg) {
-  console.log(chalk.bgCyanBright(msg));
+  console.log(chalk.bgCyan(msg));
 }
 
 export function bgMagenta(msg) {

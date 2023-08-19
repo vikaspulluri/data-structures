@@ -63,10 +63,10 @@ function sort_method(k) {
 
 
 function logWithTime(callback: Function[], k: number) {
-  const start = performance.now();
+  const start = Date.now();
   callback.forEach(cb => {
     const result = cb.call(this, k);
-    const execTime = performance.now() - start;
+    const execTime = Date.now() - start;
     const colorIndex = Math.floor(Math.random() * colors.length);
     colors[colorIndex].call(this, `${cb.name} - ${result} - ${execTime.toFixed(2)}`);
   })

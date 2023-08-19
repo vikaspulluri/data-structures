@@ -5,7 +5,7 @@ export function lengthOfLongestSubstring(s: string): number {
       if (dict.hasOwnProperty(s[cur])) {
           const dupIdx = dict[s[cur]];
           result = Math.max(result, cur - start);
-          Object.entries(dict).forEach(([key, value]) => {
+          Object.entries(dict).forEach(([key, value]: [string, number]) => {
               if (start <= value && value <= dupIdx) {
                   delete dict[key];
               }
