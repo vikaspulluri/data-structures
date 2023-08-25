@@ -4,22 +4,22 @@
  * @param arr 
  * @param k 
  * @returns 
+ * O(k * (n-k))
  */
 export function slidingWindowMax_brute(arr, k) {
   if (k === 1) return arr;
-  const output = new Array(arr.length - k + 1);
-  let start = 0, end = arr.length;
-  let max = -Infinity;
+  const output = [];
+  let end = arr.length - k + 1;
+  let max = Number.MIN_VALUE;
   let i = 0;
-  while (start < end) {
-    let j = i + k;
-    while (j < k) {
+  while (i < end) {
+    for (let j = i; j < k + i; j++) {
       max = Math.max(max, arr[j]);
-      j++;
     }
     output.push(max);
     i++;
   }
+  return output;
 }
 
 

@@ -4,6 +4,8 @@ import { pairs, removeDuplicates, threeSum, dups, insertPosition, rotateArray } 
 import { removeDuplicatesInPlace } from "./remove-duplicates-inplace";
 import { maxProfitWithSingleTransaction } from "./buy-sell-stock";
 import * as kthElement from "./kth-smallest-element";
+import { logPerformance } from "../perf-hook";
+import { slidingWindowMax_brute } from "./sliding-window-maximum";
 
 export class ArrayOperations {
   private a = [1,3,6,8,11];
@@ -95,4 +97,6 @@ let aa = [1,3,4,6];
 // green(removeDuplicatesInPlace([1,1,2]))
 // blue(maxProfitWithSingleTransaction([1,3,7,8]))
 
-kthElement.run()
+// kthElement.run();
+
+logPerformance(slidingWindowMax_brute, [1, 3, -1, -3, 5, 3, 6, 7], 3);
