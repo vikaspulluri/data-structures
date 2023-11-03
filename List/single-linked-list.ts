@@ -350,4 +350,97 @@ export class SingleLinkedList {
     return head;
   }
 
+  clone() {
+    let prev = new Node(null);
+    let newHead = prev;
+    let current = this.head;
+    while (current) {
+      let tmp = new Node(current.data);
+      prev.next = tmp;
+      prev = prev.next;
+      current = current.next;
+    }
+    return newHead.next;
+  }
+
+  cloneWithMap(head = this.head) {
+    if (!head) return null;
+    const oldToNewMap = new Map([
+        [null, null]
+    ]);
+
+    let cur = head;
+    while (cur) {
+        let copy = new Node(cur.data);
+        oldToNewMap.set(cur, copy);
+        cur = cur.next;
+    }
+    cur = head;
+    while (cur) {
+        const copy = oldToNewMap.get(cur);
+        // copy.random = oldToNewMap.get(cur.random);
+        copy.next = oldToNewMap.get(cur.next);
+        cur = cur.next;
+    }
+    return oldToNewMap.get(head);
+  };
+
+  cloneWithMapRec() {
+    const map = new Map();
+    function cloner(node) {
+      if (!node) return null;
+
+      if (map.has(node)) return map.get(node);
+
+      const copy = new Node(node.data);
+      map.set(node, copy);
+
+      copy.next = cloner(node.next);
+      return copy;
+    }
+    return cloner(this.head);
+  }
+  
+  swap(x, y) {
+    
+    if (x === y) return this.head;
+
+    let px = null, cx = null, py = null, cy = null, count = 1;
+    let cur = this.head;
+    let prev = null;
+    while (cur) {
+      if (count === x) {
+        cx = cur;
+        px = prev;
+      } else if (count === y) {
+        cy = cur;
+        py = prev;
+      }
+      count++;
+      prev = cur;
+      cur = cur.next;
+    }
+
+    if (!cx || !cy) return this.head;
+
+    // x is head
+    if (px === null) {
+      this.head = cy;
+    } else {
+      px.next = cy;
+    }
+
+    // y is head
+    if (py === null) {
+      this.head = cx;
+    } else {
+      py.next = cx;
+    }
+
+    let tmp = cx.next;
+    cx.next = cy.next;
+    cy.next = tmp;
+
+    return this.head;
+  }
 }

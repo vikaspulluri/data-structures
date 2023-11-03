@@ -47,7 +47,7 @@ function brute(n = 10000) {
   console.log('performance brute', Date.now() - now);
 }
 
-const n = 5e3;
+const n = 50000;
 
 set(n);
 map(n);

@@ -1,3 +1,5 @@
+import { logPerformance } from "../perf-hook";
+import { randomArray } from "../Algos/DP/util";
 import { CircularLinkedList } from "./circular-linked-list";
 import { DoubleLinkedList } from "./double-linked-list";
 import { SingleLinkedList } from "./single-linked-list";
@@ -23,6 +25,9 @@ export class LinkedList {
     const s2 = new SingleLinkedList(8);
     s2.create([9,10,3,4,5,6]);
     console.log('intersection: ' + sll.intersection(s1, s2));
+
+    let clone = sll.clone();
+    console.log('cloned', clone);
   }
 
   cll(data) {
@@ -39,8 +44,29 @@ export class LinkedList {
     dll.reverse();
     dll.display();
   }
+
+  sll_clone() {
+    const arr = randomArray(1000);
+    const sll = new SingleLinkedList(1);
+    sll.create(arr);
+
+    logPerformance(sll.clone.bind(sll));
+    logPerformance(sll.cloneWithMap.bind(sll));
+    logPerformance(sll.cloneWithMapRec.bind(sll));
+  }
+
+  swap() {
+    const sll = new SingleLinkedList(3);
+    sll.create([5]);
+    sll.display();
+    sll.swap(1,2);
+    sll.display();
+  }
 }
 
 const list = new LinkedList();
-list.sll(5);
+// list.sll(5);
 // list.dll(1);
+
+// list.sll_clone();
+list.swap();
