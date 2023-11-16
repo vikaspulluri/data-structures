@@ -4,9 +4,37 @@ const colors = [blue, yellow, green, red, cyan];
 
 const arr = new Array(500).fill(0).map(v => Math.floor(Math.random() * 2000))
 
-function kthSmallestElement() {
-
+function kthLargestElement(arr, k) {
+  let a = [...arr];
+  return a[arr.length - k];
 }
+
+function kthLargestElementQuickSelect(arr, k) {
+  const kth = arr.length - k;
+  const nums = [...arr];
+  
+  function quickSelect(left, right) {
+    let pivot = nums[right], p = left;
+    for (let i=left;i<right;i++) {
+      if (nums[i] <= pivot) {
+        [nums[i], nums[p]] = [nums[p], nums[i]];
+        p++;
+      }
+      [nums[p], nums[right]] = [nums[right], nums[p]];
+
+      if (p > kth) {
+        return quickSelect(left, p-1);
+      } else if (p < kth) {
+        return quickSelect(p+1, right);
+      } else {
+        return nums[p];
+      }
+    }
+  }
+
+  return quickSelect(0, nums.length - 1);
+}
+
 
 function getMin(arr) {
   let min = arr[0], minIndex = 0;
